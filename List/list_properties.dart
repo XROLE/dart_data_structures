@@ -8,12 +8,3 @@
 // 8. ===> reversed → Iterable<E> Returns an Iterable of the objects in this list in reverse order.
 // 9. ===> runtimeType → Type A representation of the runtime type of the object.
 // 10. ====> single → E Checks that this iterable has only one element, and returns that element. [...]
-
-List<int> myList = [5];
-
-final man = myList.single;
-
-void main() {
-print('I am a chosen one $man');
-
-}
