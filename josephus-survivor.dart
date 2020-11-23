@@ -28,6 +28,7 @@ void main() {
 
 int josephusSurvivor(int n, int k) {
   List<int> survivorList = List.generate(n, (index) => index + 1);
+  
 
   while (survivorList.length > 0) {
     if (survivorList.length == 2) {
