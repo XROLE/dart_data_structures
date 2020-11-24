@@ -9,15 +9,20 @@
 
 // SOLUTION
 void main() {
-  print('I am a chosen one ${validParenthesis('(()(()()))')}');
+  print('I am a chosen one ${validParenthesis('(())')}');
 }
 
-bool validParenthesis(String braces) {
-  RegExp regExp = new RegExp('()');
+// bool validParenthesis(String braces) {
 
-  while (braces.contains('()')) {
-    braces = braces.replaceAll('()', "");
-  }
+//   while (braces.contains('()')) {
+//     braces = braces.replaceAll('()', "");
+//   }
 
-  return braces.isEmpty;
+//   return braces.isEmpty;
+// }
+
+bool validParenthesis(String parentheses) {
+  try { new RegExp(parentheses); }
+  catch (_) { return false; }
+  return true;
 }
