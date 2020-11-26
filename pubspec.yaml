@@ -1,0 +1,7 @@
+name: dart_data_structures
+
+environment:
+  sdk: '>=2.10.0 <3.0.0'
+
+dependencies:
+  crypto: ^2.1.5
