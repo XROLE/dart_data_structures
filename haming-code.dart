@@ -21,16 +21,48 @@
 // --> "000111111000111000000000000111111000000111000111000111111111111000000111"  // concatenated
 
 void main() {
-  print('I am a chosen one ' + getCodeUnit().toString());
+  // print('I am a chosen one ' + getCodeUnit('hey').toString());
 }
 
-String getCodeUnit() {
-  String str = 'hey';
-  return str.codeUnits
-      .map((e) => '0${e.toRadixString(2)}')
-      .map((String e) => e.split('').map((element) {
-            return element * 3;
-          }).join()
-          )
-      .join();
+// String getCodeUnit(String str) {
+//   return str.codeUnits
+//       .map((e) => '0${e.toRadixString(2)}')
+//       .map((String e) => e.split('').map((element) {
+//             return element * 3;
+//           }).join()
+//           )
+//       .join();
+// }
+
+encode(text) {
+  var bits = "";
+  for (var i = 0; i < text.length; i++)
+    bits += text[i].codeUnitAt(0).toRadixString(2).padLeft(8, '0');
+  return bits.replaceAll("0", "000").replaceAll("1", "111");
+}
+
+decode(bits) {
+  var correctedBits = "", buffer = "", text = "";
+  for (var i = 0; i < bits.length; i++) {
+    buffer += bits[i];
+    if (buffer.length == 3) {
+      var check = 0;
+      for (var x = 0; x < 3; x++) {
+        if (buffer[x] == "1") check++;
+        else check--;
+      }
+      if (check > 0) correctedBits += "1";
+      else correctedBits += "0";
+      buffer = "";
+    }
+  }
+  buffer = "";
+  for (var i = 0; i < correctedBits.length; i++) {
+    buffer += correctedBits[i];
+    if (buffer.length == 8) {   
+      text += String.fromCharCode(int.parse(buffer, radix: 2));
+      buffer = "";
+    }
+  }
+  return text;
 }
